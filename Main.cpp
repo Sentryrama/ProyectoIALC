@@ -157,14 +157,16 @@ int automata(char key, string &direccionIP, int k) {
                         return 3;
                     }
                 } else if (ultimos == "25") {
-                    if (limitador('5', '5', key)) {
+                    if (limitador('0', '5' , key)) {
                         direccionIP.append(string(1, key));
                         step = Step::One;
                         return 3;
                     } else {
+                        step = Step::One;
                         return 3;
                     }
                 } else if (
+                        ultimos == "25" ||
                         ultimos == "26" ||
                         ultimos == "27" ||
                         ultimos == "28" ||
@@ -204,11 +206,10 @@ int main() {
             direccionIP += ".";
         k = 0;
         while (k < 3) {
-            cout << "Direccion compuesta: " << direccionIP << endl;
+            cout << "\nDireccion compuesta: " << direccionIP << endl;
 
             cout << "Ingresa un digito numerico // 't' para TAB // 'b' para Backspace: ";
             cin >> key;
-            cout << "El valor de k: " << k << " El valor de i: " << i + 1 << endl;
             if (direccionIP.back() == '.' && key == 'b' || key == 'B') {
                 k = automata(key, direccionIP, k);
                 i--;
